@@ -1,5 +1,7 @@
 #include "ReactJuceGUIApplication/MainComponent.h"
 
+namespace juce_gui_application
+{
 //==============================================================================
 class GuiAppApplication final : public juce::JUCEApplication
 {
@@ -110,3 +112,4 @@ private:
 //==============================================================================
 // This macro generates the main() routine that launches the app.
 START_JUCE_APPLICATION (GuiAppApplication)
+}

@@ -8,12 +8,11 @@ juce_add_gui_app(${PROJECT_NAME}
     PRODUCT_NAME "ReactJuceGUIApplication"
 )
 
-juce_generate_juce_header(${PROJECT_NAME})
-
 target_sources(${PROJECT_NAME} PRIVATE
     src/Main.cpp
     src/MainComponent.cpp
     ${INCLUDE_DIR}/MainComponent.h
+    ${INCLUDE_DIR}/Util.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
