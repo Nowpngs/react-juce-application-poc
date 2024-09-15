@@ -1,8 +1,14 @@
-import React from "react";
+import { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+import * as Juce from "juce-framework-frontend";
+
 function App() {
+  useEffect(() => {
+    console.log(Juce);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">

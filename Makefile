@@ -24,3 +24,15 @@ format-style:
 	@echo "Formatting Frontend Code..."
 	@cd frontend && npm run format
 	@echo "Success!"
+
+run-production-build:
+	@echo "Building Backend..."
+	@cd backend && cmake --build build --config Release
+
+	@echo "Building Frontend..."
+	@cd frontend && npm run build && npm run zip
+
+	@echo "Running Plugin..."
+	@cd backend/build/app/ReactJuceGUIApplication_artefacts/ReactJuceGUIApplication.app/Contents/MacOS/ && ./ReactJuceGUIApplication
+
+	@echo "Success!"
