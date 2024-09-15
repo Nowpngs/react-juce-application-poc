@@ -5,25 +5,36 @@ class GuiAppApplication final : public juce::JUCEApplication
 {
 public:
     //==============================================================================
-    GuiAppApplication() {}
+    GuiAppApplication ()
+    {
+    }
 
     // We inject these as compile definitions from the CMakeLists.txt
     // If you've enabled the juce header with `juce_generate_juce_header(<thisTarget>)`
     // you could `#include <JuceHeader.h>` and use `ProjectInfo::projectName` etc. instead.
-    const juce::String getApplicationName() override       { return JUCE_APPLICATION_NAME_STRING; }
-    const juce::String getApplicationVersion() override    { return JUCE_APPLICATION_VERSION_STRING; }
-    bool moreThanOneInstanceAllowed() override             { return true; }
+    const juce::String getApplicationName () override
+    {
+        return JUCE_APPLICATION_NAME_STRING;
+    }
+    const juce::String getApplicationVersion () override
+    {
+        return JUCE_APPLICATION_VERSION_STRING;
+    }
+    bool moreThanOneInstanceAllowed () override
+    {
+        return true;
+    }
 
     //==============================================================================
-    void initialise (const juce::String& commandLine) override
+    void initialise (const juce::String & commandLine) override
     {
         // This method is where you should put your application's initialisation code..
         juce::ignoreUnused (commandLine);
 
-        mainWindow.reset (new MainWindow (getApplicationName()));
+        mainWindow.reset (new MainWindow (getApplicationName ()));
     }
 
-    void shutdown() override
+    void shutdown () override
     {
         // Add your application's shutdown code here..
 
@@ -31,14 +42,14 @@ public:
     }
 
     //==============================================================================
-    void systemRequestedQuit() override
+    void systemRequestedQuit () override
     {
         // This is called when the app is being asked to quit: you can ignore this
         // request and let the app carry on running, or call quit() to allow the app to close.
-        quit();
+        quit ();
     }
 
-    void anotherInstanceStarted (const juce::String& commandLine) override
+    void anotherInstanceStarted (const juce::String & commandLine) override
     {
         // When another instance of the app is launched while this one is running,
         // this method is invoked, and the commandLine parameter tells you what
@@ -56,29 +67,29 @@ public:
     public:
         explicit MainWindow (juce::String name)
             : DocumentWindow (name,
-                              juce::Desktop::getInstance().getDefaultLookAndFeel()
-                                                          .findColour (ResizableWindow::backgroundColourId),
+                              juce::Desktop::getInstance ().getDefaultLookAndFeel ().findColour (
+                                  ResizableWindow::backgroundColourId),
                               DocumentWindow::allButtons)
         {
             setUsingNativeTitleBar (true);
-            setContentOwned (new MainComponent(), true);
+            setContentOwned (new MainComponent (), true);
 
-           #if JUCE_IOS || JUCE_ANDROID
+#if JUCE_IOS || JUCE_ANDROID
             setFullScreen (true);
-           #else
+#else
             setResizable (true, true);
-            centreWithSize (getWidth(), getHeight());
-           #endif
+            centreWithSize (getWidth (), getHeight ());
+#endif
 
             setVisible (true);
         }
 
-        void closeButtonPressed() override
+        void closeButtonPressed () override
         {
             // This is called when the user tries to close this window. Here, we'll just
             // ask the app to quit when this happens, but you can change this to do
             // whatever you need.
-            JUCEApplication::getInstance()->systemRequestedQuit();
+            JUCEApplication::getInstance ()->systemRequestedQuit ();
         }
 
         /* Note: Be careful if you override any DocumentWindow methods - the base
