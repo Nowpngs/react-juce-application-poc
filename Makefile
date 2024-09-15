@@ -1,14 +1,21 @@
-install-dependencies:
+install-backend:
 	@echo "Installing Dependencies..."
 	cd backend && cmake -S . -B build
 
-build-plugin:
+run-backend:
 	@echo "Building Project..."
-	cd backend && cmake --build build
+	@cd backend && cmake --build build
 
-run-plugin:
 	@echo "Running Plugin..."
 	@cd backend/build/app/ReactJuceGUIApplication_artefacts/ReactJuceGUIApplication.app/Contents/MacOS/ && ./ReactJuceGUIApplication
+
+install-frontend:
+	@echo "Installing Dependencies..."
+	@cd frontend && npm install
+
+run-frontend:
+	@echo "Running Frontend..."
+	@cd frontend && npm start
 
 format-style:
 	@echo "Formatting Code..."
