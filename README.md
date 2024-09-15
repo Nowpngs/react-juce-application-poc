@@ -11,9 +11,9 @@ Before starting, ensure you have the following installed:
 - **CMake**: Required for generating the build system. [Download CMake here](https://cmake.org/download/).
 - **Node.js & npm**: Required for managing frontend dependencies. [Download Node.js here](https://nodejs.org/).
 
-### Build & Install
+### Build & Install (for Local Development)
 
-Follow these steps to build and install both the backend JUCE application and frontend React interface:
+Follow these steps to build and install both the backend JUCE application and frontend React interface for local development:
 
 #### Backend Setup (JUCE GUI Application)
 
@@ -52,6 +52,20 @@ Follow these steps to build and install both the backend JUCE application and fr
    make run-frontend
    ```
 
+### Release Build and Packaging
+
+To build the application in release mode and package the frontend React application:
+
+```bash
+make run-production-build
+```
+
+This command performs the following:
+
+- Builds the backend JUCE application with the Release configuration.
+- Builds the frontend React application and packages it.
+- Runs the backend JUCE application.
+
 ## Coding Standard
 
 #### Backend (C++/JUCE) and Frontend (React) Code Formatting
@@ -81,8 +95,9 @@ This project uses `clang-format` for the backend (JUCE application) and `prettie
    ```
 
    The format-style target will:
-      - Apply clang-format to all `.cpp` and `.h` files in the backend directory.
-      - Use prettier to format all files in the frontend directory.
+
+   - Apply clang-format to all `.cpp` and `.h` files in the backend directory.
+   - Use prettier to format all files in the frontend directory.
 
 **Note:** Always format your code before committing changes to ensure that your code adheres to the project's coding standards. This helps maintain a consistent style across the codebase.
 
