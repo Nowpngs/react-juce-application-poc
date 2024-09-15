@@ -19,5 +19,8 @@ run-frontend:
 
 format-style:
 	@echo "Formatting Code..."
+	@echo "Formatting Backend JUCE Code..."
 	@cd backend && find app \( -name '*.cpp' -o -name '*.h' \) -exec clang-format -i {} +
-	@echo "Done!"
+	@echo "Formatting Frontend Code..."
+	@cd frontend && npm run format
+	@echo "Success!"

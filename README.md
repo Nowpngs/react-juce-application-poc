@@ -54,7 +54,7 @@ Follow these steps to build and install both the backend JUCE application and fr
 
 ## Coding Standard
 
-#### Backend (C++/JUCE) Code Formatting
+#### Backend (C++/JUCE) and Frontend (React) Code Formatting
 
 This project uses `clang-format` for the backend (JUCE application) and `prettier` for the frontend (React application) to maintain consistent coding standards.
 
@@ -66,17 +66,23 @@ This project uses `clang-format` for the backend (JUCE application) and `prettie
    brew install clang-format
    ```
 
-2. **Format the backend code**
+   For formatting frontend code, ensure `prettier` is installed. You can add it to your project dependencies with:
 
-   Run the following command from the root directory of the project to format all `.cpp` and `.h` files in the backend directories:
+   ```bash
+   npm install --save-dev prettier
+   ```
+
+2. **Format the code**
+
+   To format both backend and frontend code, run the following command from the root directory of the project:
 
    ```bash
    make format-style
    ```
 
-   This will apply `clang-format` to all relevant files according to the style defined in your `.clang-format` file.
-
-#### Frontend (React) Code Formatting
+   The format-style target will:
+      - Apply clang-format to all `.cpp` and `.h` files in the backend directory.
+      - Use prettier to format all files in the frontend directory.
 
 **Note:** Always format your code before committing changes to ensure that your code adheres to the project's coding standards. This helps maintain a consistent style across the codebase.
 
