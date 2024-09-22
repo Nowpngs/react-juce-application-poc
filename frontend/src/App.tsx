@@ -2,12 +2,22 @@ import { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-import * as Juce from "juce-framework-frontend";
+import JuceServices from "./api/juce-service";
 
 function App() {
   useEffect(() => {
-    console.log(Juce);
+    getExampleResource();
   }, []);
+
+  async function getExampleResource(): Promise<void> {
+    await JuceServices.getExampleResource()
+      .then((data) => {
+        console.log(data.exampleProperty);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   return (
     <div className="App">
