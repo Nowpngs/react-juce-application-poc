@@ -36,6 +36,11 @@ MainComponent::getResource (const juce::String & url)
     const auto urlToRetrive =
         url == "/" ? juce::String {"index.html"} : url.fromFirstOccurrenceOf ("/", false, false);
 
+    if (urlToRetrive == "exampleResource")
+    {
+        return createExampleResource ();
+    }
+
     if (auto * archive = juce_gui_application_util::getBuildZipFile ())
     {
         if (auto * entry = archive->getEntry (urlToRetrive))
@@ -48,5 +53,15 @@ MainComponent::getResource (const juce::String & url)
     }
 
     return std::nullopt;
+}
+
+std::optional<juce::WebBrowserComponent::Resource> MainComponent::createExampleResource ()
+{
+    juce::DynamicObject::Ptr data (new juce::DynamicObject ());
+    data->setProperty ("exampleProperty", 42);
+    const juce::String json = juce::JSON::toString (data.get ());
+
+    juce::MemoryInputStream stream (json.getCharPointer (), json.getNumBytesAsUTF8 (), false);
+    return juce::WebBrowserComponent::Resource {streamToVector (stream), "application/json"};
 }
 }

@@ -27,6 +27,7 @@ private:
     //==============================================================================
     // Your private member variables go here...
     std::optional<juce::WebBrowserComponent::Resource> getResource (const juce::String & url);
+    std::optional<juce::WebBrowserComponent::Resource> createExampleResource ();
 
     juce::WebBrowserComponent webView;
 
