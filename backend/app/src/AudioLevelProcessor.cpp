@@ -8,6 +8,11 @@ AudioLevelProcessor::AudioLevelProcessor ()
     multiChannelBuffer.setSize (4, 512); // Default buffer size for four channels
 }
 
+void AudioLevelProcessor::releaseResources ()
+{
+    // Release any resources allocated in prepareToPlay
+}
+
 void AudioLevelProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     multiChannelBuffer.setSize (4, samplesPerBlock);
