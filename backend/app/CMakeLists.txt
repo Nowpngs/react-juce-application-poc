@@ -11,8 +11,10 @@ juce_add_gui_app(${PROJECT_NAME}
 target_sources(${PROJECT_NAME} PRIVATE
     src/Main.cpp
     src/MainComponent.cpp
+    src/AudioLevelProcessor.cpp
     ${INCLUDE_DIR}/MainComponent.h
     ${INCLUDE_DIR}/Util.h
+    ${INCLUDE_DIR}/AudioLevelProcessor.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
