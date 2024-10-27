@@ -4,6 +4,8 @@
 // directly. If you need to remain compatible with Projucer-generated builds, and
 // have called `juce_generate_juce_header(<thisTarget>)` in your CMakeLists.txt,
 // you could `#include <JuceHeader.h>` here instead, to make all your module headers visible.
+#include "ReactJuceGUIApplication/AudioLevelProcessor.h"
+
 #include <JuceHeader.h>
 #include <juce_gui_extra/juce_gui_extra.h>
 
@@ -22,6 +24,7 @@ public:
 
     //==============================================================================
     void resized () override;
+    void timerCallback () override;
 
 private:
     //==============================================================================
@@ -30,6 +33,7 @@ private:
     std::optional<juce::WebBrowserComponent::Resource> createExampleResource ();
 
     juce::WebBrowserComponent webView;
+    juce_gui_application_processor::AudioLevelProcessor audioProcessor;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
