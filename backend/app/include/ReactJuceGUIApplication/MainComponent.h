@@ -16,7 +16,9 @@
 */
 namespace juce_gui_application
 {
-class MainComponent final : public juce::Component
+class MainComponent final
+    : public juce::Component
+    , private juce::Timer
 {
 public:
     //==============================================================================
@@ -24,6 +26,7 @@ public:
 
     //==============================================================================
     void resized () override;
+    void timerCallback () override;
 
 private:
     //==============================================================================

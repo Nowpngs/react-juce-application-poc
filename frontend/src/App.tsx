@@ -7,6 +7,16 @@ import JuceServices from "./api/juce-service";
 function App() {
   useEffect(() => {
     getExampleResource();
+
+    JuceServices.addEventListener("audioLevels", (event) => {
+      console.log(event);
+    });
+
+    return () => {
+      JuceServices.removeEventListener("audioLevels", () => {
+        console.log("Event listener removed");
+      });
+    };
   }, []);
 
   async function getExampleResource(): Promise<void> {

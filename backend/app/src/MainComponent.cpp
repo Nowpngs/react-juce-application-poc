@@ -10,11 +10,14 @@ namespace juce_gui_application
 MainComponent::MainComponent ()
     : webView (juce::WebBrowserComponent::Options ().withResourceProvider (
           [this] (const auto & url) { return getResource (url); }))
+    , audioProcessor ()
 {
     addAndMakeVisible (webView);
     webView.goToURL (webView.getResourceProviderRoot ());
 
     setSize (600, 400);
+
+    startTimer (60);
 }
 
 //==============================================================================
@@ -25,6 +28,23 @@ void MainComponent::resized ()
     // If you add any child components, this is where you should
     // update their positions.
     webView.setBounds (getLocalBounds ());
+}
+
+void MainComponent::timerCallback ()
+{
+    // This is called by the timer.
+    // You can use this to update the UI and perform other tasks.
+    auto levels = audioProcessor.getChannelLevels ();
+
+    // Convert std::vector<float> to juce::Array<juce::var>
+    juce::Array<juce::var> levelVars;
+    for (const auto & level : levels)
+    {
+        levelVars.add (level);
+    }
+
+    // Emit the event with the converted array
+    webView.emitEventIfBrowserIsVisible ("audioLevels", levelVars);
 }
 
 std::optional<juce::WebBrowserComponent::Resource>

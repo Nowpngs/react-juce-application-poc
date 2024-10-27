@@ -7,4 +7,18 @@ export default class JuceServices {
       (res) => res.json() as Promise<ExampleResponse>,
     );
   }
+
+  static addEventListener(
+    eventName: string,
+    callback: (event: any) => void,
+  ): void {
+    (window as any).__JUCE__.backend.addEventListener(eventName, callback);
+  }
+
+  static removeEventListener(
+    eventName: string,
+    callback: (event: any) => void,
+  ): void {
+    (window as any).__JUCE__.backend.removeEventListener(eventName, callback);
+  }
 }
