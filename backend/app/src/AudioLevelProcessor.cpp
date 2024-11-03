@@ -25,9 +25,12 @@ void AudioLevelProcessor::processBlock (juce::AudioBuffer<float> & buffer, juce:
     for (int channel = 0; channel < buffer.getNumChannels (); ++channel)
     {
         auto * channelData = buffer.getWritePointer (channel);
+        float smoothingFactor = 0.9f;
+
         for (int sample = 0; sample < buffer.getNumSamples (); ++sample)
         {
-            channelData [sample] = juce::Random::getSystemRandom ().nextFloat () * 2.0f - 1.0f;
+            float randomValue = (juce::Random::getSystemRandom().nextFloat() * 0.4f - 0.2f);
+            channelData[sample] = smoothingFactor * channelData[sample] + (1.0f - smoothingFactor) * randomValue;
         }
     }
 

@@ -34,6 +34,14 @@ void MainComponent::timerCallback ()
 {
     // This is called by the timer.
     // You can use this to update the UI and perform other tasks.
+
+     // Simulate a buffer with 4 channels and 512 samples per block
+    juce::AudioBuffer<float> testBuffer(4, 512);
+    juce::MidiBuffer midiBuffer;
+
+    // Manually call processBlock to simulate audio processing
+    audioProcessor.processBlock(testBuffer, midiBuffer);
+
     auto levels = audioProcessor.getChannelLevels ();
 
     // Convert std::vector<float> to juce::Array<juce::var>
